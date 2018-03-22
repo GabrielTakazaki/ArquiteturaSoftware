@@ -1,0 +1,13 @@
+@startuml
+
+title Packages - Layers Diagram
+
+package "GUI" {
+    component [Telas] as gui
+}
+package "Entity" {
+    component [classes] as entidades
+}
+GUI -down->Entity
+
+@endum1
