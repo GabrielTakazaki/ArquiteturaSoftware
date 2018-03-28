@@ -2,25 +2,38 @@ package controller;
 
 import entidades.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.List;
 
 public class ClienteController {
     
-    private ArrayList<Cliente> ListCliente;
+    private List<Cliente> clientes;
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
     
-    public ClienteController () {
-        ListCliente = new ArrayList<>();
+    public void adcClientes(Cliente c) throws Exception {
+        boolean verif = true;
+        if (clientes == null) {
+            clientes = new ArrayList<Cliente>();
+        }
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getNome().equals(c.getNome())) {
+                verif = false;
+            }
+        }
+        if (verif) {
+            clientes.add(c);
+        }
+        else {
+            throw new Exception ("Nome Existente");
+        }
     }
-    public ArrayList<Cliente> getClientes() {
-        return ListCliente;
-    }
-    public void setClientes(ArrayList<Cliente> clientes) {
-        this.ListCliente = clientes;
-    }
-    public void adcClientes(Cliente c) {
-        ListCliente.add(c);
-    }
+    
     public int tamanhoArray() {
-        return ListCliente.size();
+        return clientes.size();
     }
 }

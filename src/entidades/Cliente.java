@@ -6,8 +6,44 @@ public class Cliente {
     private String telefone;
     private double credito;
     private int idade;
-    private Pais pais;
+    private Pais p;
 
+    public Pais getP() {
+        return p;
+    }
+
+    public double getCredito() {
+        return credito;
+    }
+
+    public void setCredito(double credito){
+        if (this.getIdade() < 18){
+            this.credito = 100;
+        } else if (this.getIdade() >= 18 && this.getIdade() <= 35){
+            this.credito = 300;
+        } else {
+            this.credito = 500;
+        }
+        if(this.p.getNome().equalsIgnoreCase("brasil")){
+            this.credito += 100;
+        }
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public void setP(Pais p) throws Exception {
+        if (p == null){
+            throw new Exception("Um país deve ser selecionado!");
+        } else {
+            this.p = p;
+        }
+    }
     /**
      * @return the nome
      */
@@ -18,8 +54,12 @@ public class Cliente {
     /**
      * @param nome the nome to set
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nome) throws Exception {
+        if (nome.length() < 5){
+            throw new Exception("Nome não pode ser menor que 5 caracteres");
+        } else {
+            this.nome = nome;
+        }
     }
 
     /**
@@ -32,50 +72,20 @@ public class Cliente {
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTelefone(String telefone) throws Exception {
+        if (telefone.length() != p.getDigitosTel()){
+            throw new Exception("Numero de telefone inválido");
+        } else {
+            this.telefone = telefone;
+        }
     }
 
-    /**
-     * @return the credito
-     */
-    public double getCredito() {
-        return credito;
+    
+    public String creditoString(){
+        return "" + credito;
     }
-
-    /**
-     * @param credito the credito to set
-     */
-    public void setCredito(double credito) {
-        this.credito = credito;
+    
+    public String idadeString(){
+        return "" + idade;
     }
-
-    /**
-     * @return the idade
-     */
-    public int getIdade() {
-        return idade;
-    }
-
-    /**
-     * @param idade the idade to set
-     */
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    /**
-     * @return the pais
-     */
-    public Pais getPais() {
-        return pais;
-    }
-
-    /**
-     * @param pais the pais to set
-     */
-    public void setPais(Pais pais) {
-        this.pais = pais;
-    }
-
 }

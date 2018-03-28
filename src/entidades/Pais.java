@@ -4,33 +4,33 @@ public class Pais {
     
     private String nome;
     private String sigla;
+    private int digitosTel;
+    
+    public Pais(){
+    }
 
-    /**
-     * @return the nome
-     */
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return the sigla
-     */
     public String getSigla() {
         return sigla;
     }
 
-    /**
-     * @param sigla the sigla to set
-     */
     public void setSigla(String sigla) {
         this.sigla = sigla;
+    }
+
+    public int getDigitosTel() {
+        return digitosTel;
+    }
+
+    public void setDigitosTel(int digitosTel) {
+        this.digitosTel = digitosTel;
     }
     
 }

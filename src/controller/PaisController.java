@@ -2,22 +2,37 @@ package controller;
 
 import entidades.Pais;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PaisController {
-    private ArrayList<Pais> paises = new ArrayList<Pais>();
-
+    private List<Pais> paises;
     /**
      * @return the paises
      */
-    public ArrayList<Pais> getPaises() {
+    public List<Pais> getPaises() {
         return paises;
+    }
+    public int ArrayPais() {
+        return paises.size();
     }
 
     /**
      * @param paises the paises to set
      */
-    public void setPaises(Pais pais) {
-        this.paises.add(pais);
+    public void addPaises(Pais p)throws Exception{
+        if (paises == null)
+            paises = new ArrayList<Pais>();
+        
+        boolean b = true;
+        for(int i = 0; i < paises.size(); i++){
+            if(p.getNome().equals(paises.get(i).getNome()))
+                b = false;
+        }
+        if (b){
+            paises.add(p);
+        } else {
+            throw new Exception("Pais ja existente");
+        }
     }
     
 }
