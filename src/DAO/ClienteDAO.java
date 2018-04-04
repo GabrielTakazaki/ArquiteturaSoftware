@@ -50,5 +50,44 @@ public class ClienteDAO {
             throw new Exception ("Nome Inexistente");
         }
     }
-    
+    public void alterarCliente (Cliente c) throws Exception {
+        boolean verif = true;
+        int posicao = -1;
+        if (clientes.getClientes() == null) {
+            clientes.setClientes(new ArrayList<Cliente>());
+        }
+        for (int i = 0; i < clientes.getClientes().size(); i++) {
+            if (clientes.getClientes().get(i).getNome().equals(c.getNome())) {
+                verif = true;
+                posicao = i;
+            }
+        }
+        if (verif) {
+            clientes.getClientes().set(posicao,c);
+        }
+        else {
+            throw new Exception ("Nome Inalterado");
+        }
+    }
+    public Cliente buscarCliente (String nome) throws Exception {
+        boolean verif = true;
+        if (clientes.getClientes() == null) {
+            clientes.setClientes(new ArrayList<Cliente>());
+        }
+        else {
+            throw new Exception ("Clientes vazio");
+        }
+        
+        for (Cliente cliente : clientes.getClientes()) {
+            if (cliente.getNome().equals(nome)) {
+                verif = true;
+            }
+        }
+        if (verif) {
+            return sala
+        }
+        else {
+            throw new Exception ("Nome Inalterado");
+        }
+    }
 }
