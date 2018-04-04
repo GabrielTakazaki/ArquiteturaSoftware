@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package bancodedados;
 
 import bancodedados.ClienteController;
 import entidades.Cliente;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteDAO {
     private ClienteController clientes;
@@ -70,6 +71,7 @@ public class ClienteDAO {
         }
     }
     public Cliente buscarCliente (String nome) throws Exception {
+        Cliente c = new Cliente();
         boolean verif = true;
         if (clientes.getClientes() == null) {
             clientes.setClientes(new ArrayList<Cliente>());
@@ -81,13 +83,18 @@ public class ClienteDAO {
         for (Cliente cliente : clientes.getClientes()) {
             if (cliente.getNome().equals(nome)) {
                 verif = true;
+                c = cliente;
             }
         }
         if (verif) {
-            return sala
+            return c;
         }
         else {
             throw new Exception ("Nome Inalterado");
         }
+    }
+    
+    public List<Cliente> listarClientes(){
+        return clientes.getClientes();
     }
 }

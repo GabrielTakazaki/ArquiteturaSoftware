@@ -6,7 +6,9 @@
 package gui;
 
 import bancodedados.PaisController;
+import bancodedados.PaisDAO;
 import entidades.Pais;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -16,6 +18,7 @@ public class TelaListarPais extends javax.swing.JFrame {
 
    private Pais p;
    private PaisController paises;
+   private PaisDAO paisDAO;
     /**
      * Creates new form TelaListarPais
      */
@@ -25,10 +28,11 @@ public class TelaListarPais extends javax.swing.JFrame {
         CarregaTbPais();
     }
     public void CarregaTbPais () {
+        paisDAO = new PaisDAO(paises);
         DefaultTableModel table = (DefaultTableModel) tbPais.getModel();
-        if (paises.getPaises() != null){
-            for (int i = 0; i < paises.ArrayPais();i++) {
-                p = paises.getPaises().get(i);
+        if (paisDAO.listarPaises()!= null){
+            List<Pais> listaPaises = paisDAO.listarPaises();
+            for (Pais p : listaPaises) {
                 table.addRow(new String[]{
                     p.getNome(),p.getSigla()
                     });

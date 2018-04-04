@@ -15,6 +15,9 @@ public class PaisController {
     public int ArrayPais() {
         return paises.size();
     }
+    public void setPaises(List<Pais> paises){
+        this.paises = paises;
+    }
 
     /**
      * @param paises the paises to set

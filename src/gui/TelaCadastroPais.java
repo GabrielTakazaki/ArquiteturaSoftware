@@ -5,6 +5,7 @@
  */
 package gui;
 
+import bancodedados.PaisDAO;
 import bancodedados.PaisController;
 import entidades.Pais;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ public class TelaCadastroPais extends javax.swing.JFrame {
      */
     
     private PaisController paises;
-    
+    private PaisDAO paisDAO;
     
     public TelaCadastroPais(PaisController paises) {
         this.paises = paises;
@@ -125,11 +126,12 @@ public class TelaCadastroPais extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         Pais p = new Pais();
+        paisDAO = new PaisDAO(paises);
         p.setNome(tfNome.getText());
         p.setSigla(tfSigla.getText());
         p.setDigitosTel(Integer.parseInt(tfTelefone.getText()));
         try {
-            paises.addPaises(p);
+            paisDAO.salvaPais(p);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ERRO "+ ex.getMessage());
         }
