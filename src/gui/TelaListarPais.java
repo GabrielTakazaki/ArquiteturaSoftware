@@ -26,6 +26,7 @@ public class TelaListarPais extends javax.swing.JFrame {
         this.paises = paises;
         initComponents();
         CarregaTbPais();
+        setLocationRelativeTo(null);
     }
     public void CarregaTbPais () {
         paisDAO = new PaisDAO(paises);

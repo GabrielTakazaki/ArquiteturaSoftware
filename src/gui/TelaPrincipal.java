@@ -19,10 +19,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private PaisController paises;
             
     public TelaPrincipal() {
-        setLocationRelativeTo(null);
         clientes = new ClienteController();
         paises = new PaisController();
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

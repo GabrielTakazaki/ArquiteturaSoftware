@@ -6,7 +6,9 @@
 package gui;
 
 import bancodedados.ClienteController;
+import bancodedados.ClienteDAO;
 import bancodedados.PaisController;
+import bancodedados.PaisDAO;
 import entidades.Cliente;
 import entidades.Pais;
 import java.lang.reflect.Array;
@@ -24,12 +26,15 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     
     private ClienteController clientes;
     private PaisController paises;
+    private ClienteDAO clienteDAO;
+    private PaisDAO paisDAO;
     
     public TelaCadastroCliente(ClienteController clientes, PaisController paises) {
         initComponents();
         this.clientes = clientes;
         this.paises = paises;
         popularComboBox();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -54,11 +59,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         btCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formFocusGained(evt);
-            }
-        });
 
         jLabel1.setText("Nome:");
 
@@ -155,24 +155,27 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         Cliente c = new Cliente();
+        clienteDAO = new ClienteDAO(clientes);
+        paisDAO = new PaisDAO(paises);
+        
         try{
             c.setNome(tfNome.getText());
             c.setIdade(Integer.parseInt(tfIdade.getText()));
             String pais = cboxPais.getSelectedItem().toString();
         
-            for (Pais p : paises.getPaises()){
+            for (Pais p : paisDAO.listarPaises()){
                 if (p.getNome().equals(pais)){
                     c.setP(p);
                 }
             }
             c.setTelefone(tfTelefone.getText());
             c.setCredito(0);
-            System.out.println(c.getCredito());
-            clientes.adcClientes(c);
+            clienteDAO.salvaCliente(c);
+            this.dispose();
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,"ERRO "+ex.getMessage());
         }
-        this.dispose();
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
@@ -182,10 +185,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private void cboxPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxPaisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboxPaisActionPerformed
-
-    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        popularComboBox();
-    }//GEN-LAST:event_formFocusGained
 
     private void cboxPaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboxPaisMouseClicked
         popularComboBox();
@@ -207,8 +206,10 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void popularComboBox() {
-        if (paises.getPaises() != null){
-            for (Pais pais : paises.getPaises()){
+        paisDAO = new PaisDAO(paises);
+        
+        if (paisDAO.listarPaises() != null){
+            for (Pais pais : paisDAO.listarPaises()){
                 cboxPais.addItem(pais.getNome());
             }
         }

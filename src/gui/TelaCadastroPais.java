@@ -22,6 +22,7 @@ public class TelaCadastroPais extends javax.swing.JFrame {
     public TelaCadastroPais(PaisController paises) {
         this.paises = paises;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -68,7 +69,7 @@ public class TelaCadastroPais extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Telefone:");
+        jLabel3.setText("Numero de Digitos do Telefone:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,7 +79,7 @@ public class TelaCadastroPais extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 163, Short.MAX_VALUE)
+                        .addGap(0, 186, Short.MAX_VALUE)
                         .addComponent(btCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(btSalvar))
@@ -132,10 +133,10 @@ public class TelaCadastroPais extends javax.swing.JFrame {
         p.setDigitosTel(Integer.parseInt(tfTelefone.getText()));
         try {
             paisDAO.salvaPais(p);
+            this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ERRO "+ ex.getMessage());
         }
-        this.dispose();
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed

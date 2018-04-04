@@ -6,6 +6,7 @@
 package gui;
 
 import bancodedados.ClienteController;
+import bancodedados.ClienteDAO;
 import entidades.Cliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Aluno
  */
 public class TelaListarCliente extends javax.swing.JFrame {
-    
+    private ClienteDAO clienteDAO;
     private ClienteController clientes;
     Cliente c = new Cliente();
     
@@ -27,12 +28,13 @@ public class TelaListarCliente extends javax.swing.JFrame {
         this.clientes = clientes;
         initComponents();
         CarregaTable();
+        setLocationRelativeTo(null);
     }
     public void CarregaTable () {
+        clienteDAO = new ClienteDAO(clientes);
         DefaultTableModel table = (DefaultTableModel) jtbl.getModel();
-        if (clientes.getClientes() != null){
-            for (int i = 0; i < clientes.tamanhoArray();i++) {
-                c = clientes.getClientes().get(i);
+        if (clienteDAO.listarClientes()!= null){
+            for (Cliente c : clienteDAO.listarClientes()) {
                 table.addRow(new String[]{c.getNome(),c.idadeString(),c.getTelefone(),c.creditoString(),c.getP().getNome()});
             }
         }
