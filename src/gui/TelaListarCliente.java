@@ -6,7 +6,7 @@
 package gui;
 
 import bancodedados.ClienteController;
-import bancodedados.ClienteDAO;
+import bancodedados.DAO.ClienteDAO;
 import entidades.Cliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;

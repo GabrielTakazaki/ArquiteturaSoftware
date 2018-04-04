@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bancodedados;
+package bancodedados.DAO;
 
+import bancodedados.PaisController;
 import bancodedados.PaisController;
 import entidades.Pais;
 import java.util.ArrayList;

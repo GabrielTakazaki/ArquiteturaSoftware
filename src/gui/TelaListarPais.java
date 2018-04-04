@@ -6,7 +6,7 @@
 package gui;
 
 import bancodedados.PaisController;
-import bancodedados.PaisDAO;
+import bancodedados.DAO.PaisDAO;
 import entidades.Pais;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

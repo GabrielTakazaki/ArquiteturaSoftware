@@ -6,9 +6,9 @@
 package gui;
 
 import bancodedados.ClienteController;
-import bancodedados.ClienteDAO;
+import bancodedados.DAO.ClienteDAO;
 import bancodedados.PaisController;
-import bancodedados.PaisDAO;
+import bancodedados.DAO.PaisDAO;
 import entidades.Cliente;
 import entidades.Pais;
 import java.lang.reflect.Array;

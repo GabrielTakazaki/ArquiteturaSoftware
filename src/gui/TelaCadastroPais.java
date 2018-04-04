@@ -5,7 +5,7 @@
  */
 package gui;
 
-import bancodedados.PaisDAO;
+import bancodedados.DAO.PaisDAO;
 import bancodedados.PaisController;
 import entidades.Pais;
 import javax.swing.JOptionPane;
