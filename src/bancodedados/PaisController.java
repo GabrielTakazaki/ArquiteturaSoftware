@@ -1,4 +1,4 @@
-package controller;
+package bancodedados;
 
 import entidades.Pais;
 import java.util.ArrayList;

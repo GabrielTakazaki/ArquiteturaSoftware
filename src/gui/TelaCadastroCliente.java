@@ -5,8 +5,8 @@
  */
 package gui;
 
-import controller.ClienteController;
-import controller.PaisController;
+import bancodedados.ClienteController;
+import bancodedados.PaisController;
 import entidades.Cliente;
 import entidades.Pais;
 import java.lang.reflect.Array;

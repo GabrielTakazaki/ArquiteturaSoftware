@@ -5,8 +5,8 @@
  */
 package gui;
 
-import controller.ClienteController;
-import controller.PaisController;
+import bancodedados.ClienteController;
+import bancodedados.PaisController;
 
 
 /**
@@ -19,7 +19,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private PaisController paises;
             
     public TelaPrincipal() {
-        
+        setLocationRelativeTo(null);
         clientes = new ClienteController();
         paises = new PaisController();
         initComponents();

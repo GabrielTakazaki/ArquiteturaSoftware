@@ -5,7 +5,7 @@
  */
 package gui;
 
-import controller.ClienteController;
+import bancodedados.ClienteController;
 import entidades.Cliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;

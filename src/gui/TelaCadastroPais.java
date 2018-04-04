@@ -5,7 +5,7 @@
  */
 package gui;
 
-import controller.PaisController;
+import bancodedados.PaisController;
 import entidades.Pais;
 import javax.swing.JOptionPane;
 
