@@ -1,0 +1,18 @@
+@startuml
+
+title Packages - Layers Diagram
+
+package "gui" {
+}
+
+package "entidades" {
+}
+
+package "bancodedados"{
+}
+
+gui -down->entidades
+gui -down->bancodedados
+bancodedados -down->entidades
+
+@endum1

@@ -1,0 +1,18 @@
+@startuml
+
+title Packages - Class Diagram
+
+
+package gui {
+}
+
+package bancodedados{
+    package DAO{
+    }
+}
+
+package entidades{
+}
+
+
+@enduml
