@@ -5,6 +5,7 @@
  */
 package gui;
 
+import bancodedados.AcessaBD;
 import bancodedados.ClienteController;
 import bancodedados.PaisController;
 
@@ -22,6 +23,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         clientes = new ClienteController();
         paises = new PaisController();
         initComponents();
+        AcessaBD acessa = new AcessaBD();
+        acessa.getConnection();
         setLocationRelativeTo(null);
     }
 
