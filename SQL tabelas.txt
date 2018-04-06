@@ -1,0 +1,19 @@
+CREATE TABLE Pais (
+	id_pais SERIAL,
+    nome_pais VARCHAR (50),
+    sigla VARCHAR (3),
+    telefone_pais int,
+    CONSTRAINT pk_pais PRIMARY KEY (id_pais)
+);
+
+CREATE TABLE Cliente(
+	id_cliente serial,
+    nome_cliente VARCHAR (50),
+    idade int,
+    telefone VARCHAR (50),
+    credito REAL,
+  	id_pais_cliente int,
+    CONSTRAINT pk_cliente PRIMARY KEY (id_cliente),
+    CONSTRAINT fk_pais FOREIGN KEY (id_pais_cliente)
+   	REFERENCES Pais (id_pais) 
+);

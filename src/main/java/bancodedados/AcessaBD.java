@@ -14,9 +14,12 @@ public class AcessaBD {
         
         try{
         String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "utfpr";
+        String url = "jdbc:postgres://localhost/postgres";
         Class.forName(driver);
-        con = (Connection) DriverManager.getConnection(
-                    "jdbc:postgres://localhost/postgres", "postgres", "utfpr");
+        con = DriverManager.getConnection(
+                    url, user, senha);
             PreparedStatement ps = con.prepareStatement("INSERT INTO Pais VALUES (Brasil, BRA, 8);");
             ps.execute();
         } catch (SQLException e){
