@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package com.gabrielejose.arquiteturasoftware.gui;
 
-import bancodedados.ClienteController;
-import bancodedados.DAO.ClienteDAO;
-import bancodedados.PaisController;
-import bancodedados.DAO.PaisDAO;
-import entidades.Cliente;
-import entidades.Pais;
+import com.gabrielejose.arquiteturasoftware.bancodedados.DAO.ClienteDAO;
+import com.gabrielejose.arquiteturasoftware.bancodedados.DAO.PaisDAO;
+import com.gabrielejose.arquiteturasoftware.entidades.Cliente;
+import com.gabrielejose.arquiteturasoftware.entidades.Pais;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,15 +22,11 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastroCliente extends javax.swing.JFrame {
     
-    private ClienteController clientes;
-    private PaisController paises;
     private ClienteDAO clienteDAO;
     private PaisDAO paisDAO;
     
-    public TelaCadastroCliente(ClienteController clientes, PaisController paises) {
+    public TelaCadastroCliente() {
         initComponents();
-        this.clientes = clientes;
-        this.paises = paises;
         popularComboBox();
         setLocationRelativeTo(null);
     }
@@ -59,6 +53,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         btCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tela Cadastro Cliente");
 
         jLabel1.setText("Nome:");
 
@@ -155,25 +150,22 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         Cliente c = new Cliente();
-        clienteDAO = new ClienteDAO(clientes);
-        paisDAO = new PaisDAO(paises);
-        
+        Pais p = new Pais();
+        clienteDAO = new ClienteDAO();
+        paisDAO = new PaisDAO();
         try{
             c.setNome(tfNome.getText());
             c.setIdade(Integer.parseInt(tfIdade.getText()));
             String pais = cboxPais.getSelectedItem().toString();
-        
-            for (Pais p : paisDAO.listarPaises()){
-                if (p.getNome().equals(pais)){
-                    c.setP(p);
-                }
-            }
+            p = paisDAO.buscarPaisNome(pais);
+            c.setP(p);
             c.setTelefone(tfTelefone.getText());
             c.setCredito(0);
             clienteDAO.salvaCliente(c);
             this.dispose();
-            
+   
         } catch (Exception ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(this,"ERRO "+ex.getMessage());
         }
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -206,12 +198,15 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void popularComboBox() {
-        paisDAO = new PaisDAO(paises);
-        
-        if (paisDAO.listarPaises() != null){
-            for (Pais pais : paisDAO.listarPaises()){
-                cboxPais.addItem(pais.getNome());
+        paisDAO = new PaisDAO();
+        try {
+            if (paisDAO.listarPaises() != null){
+                for (Pais pais : paisDAO.listarPaises()){
+                    cboxPais.addItem(pais.getNome());
+                }
             }
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 }

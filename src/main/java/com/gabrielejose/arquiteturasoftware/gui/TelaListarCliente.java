@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package com.gabrielejose.arquiteturasoftware.gui;
 
-import bancodedados.ClienteController;
-import bancodedados.DAO.ClienteDAO;
-import entidades.Cliente;
+import com.gabrielejose.arquiteturasoftware.bancodedados.DAO.ClienteDAO;
+import com.gabrielejose.arquiteturasoftware.entidades.Cliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,24 +18,25 @@ import javax.swing.table.DefaultTableModel;
  * @author Aluno
  */
 public class TelaListarCliente extends javax.swing.JFrame {
-    private ClienteDAO clienteDAO;
-    private ClienteController clientes;
-    Cliente c = new Cliente();
     
-    public TelaListarCliente(ClienteController clientes){
-        
-        this.clientes = clientes;
+    private ClienteDAO clienteDAO;
+    
+    public TelaListarCliente(){
         initComponents();
         CarregaTable();
         setLocationRelativeTo(null);
     }
     public void CarregaTable () {
-        clienteDAO = new ClienteDAO(clientes);
-        DefaultTableModel table = (DefaultTableModel) jtbl.getModel();
-        if (clienteDAO.listarClientes()!= null){
-            for (Cliente c : clienteDAO.listarClientes()) {
-                table.addRow(new String[]{c.getNome(),c.idadeString(),c.getTelefone(),c.creditoString(),c.getP().getNome()});
+        try{
+            clienteDAO = new ClienteDAO();
+            DefaultTableModel table = (DefaultTableModel) jtbl.getModel();
+            if (clienteDAO.listarClientes() != null){
+                for (Cliente c : clienteDAO.listarClientes()) {
+                    table.addRow(new String[]{c.getNome(),c.idadeString(),c.getTelefone(),c.creditoString(),c.getP().getNome()});
+                }
             }
+        } catch (Exception ex){
+            
         }
     }
     
@@ -49,6 +49,7 @@ public class TelaListarCliente extends javax.swing.JFrame {
         btSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listar Cliente");
 
         jtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

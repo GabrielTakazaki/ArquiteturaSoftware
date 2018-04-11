@@ -3,24 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package com.gabrielejose.arquiteturasoftware.gui;
 
-import bancodedados.DAO.PaisDAO;
-import bancodedados.PaisController;
-import entidades.Pais;
+import com.gabrielejose.arquiteturasoftware.bancodedados.DAO.PaisDAO;
+import com.gabrielejose.arquiteturasoftware.entidades.Pais;
 import javax.swing.JOptionPane;
 
 public class TelaCadastroPais extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaCadastroPais
-     */
+ 
+    PaisDAO dao;
     
-    private PaisController paises;
-    private PaisDAO paisDAO;
-    
-    public TelaCadastroPais(PaisController paises) {
-        this.paises = paises;
+    public TelaCadastroPais() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -44,6 +37,7 @@ public class TelaCadastroPais extends javax.swing.JFrame {
         tfTelefone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar País");
 
         jLabel1.setText("Nome:");
 
@@ -127,12 +121,12 @@ public class TelaCadastroPais extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         Pais p = new Pais();
-        paisDAO = new PaisDAO(paises);
+        dao = new PaisDAO();
         p.setNome(tfNome.getText());
         p.setSigla(tfSigla.getText());
         p.setDigitosTel(Integer.parseInt(tfTelefone.getText()));
         try {
-            paisDAO.salvaPais(p);
+            dao.salvaPais(p);
             this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "ERRO "+ ex.getMessage());

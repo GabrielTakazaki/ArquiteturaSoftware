@@ -1,30 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package gui;
+package com.gabrielejose.arquiteturasoftware.gui;
 
-import bancodedados.AcessaBD;
-import bancodedados.ClienteController;
-import bancodedados.PaisController;
-
-
-/**
- *
- * @author Aluno
- */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    private ClienteController clientes;
-    private PaisController paises;
-            
     public TelaPrincipal() {
-        clientes = new ClienteController();
-        paises = new PaisController();
         initComponents();
-        AcessaBD acessa = new AcessaBD();
-        acessa.getConnection();
         setLocationRelativeTo(null);
     }
 
@@ -43,6 +22,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btCadastrarPais = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tela Principal");
 
         btCadastrarCliente.setText("Cadastrar Cliente");
         btCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -78,11 +58,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(172, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btListarPaises, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCadastrarPais, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCadastrarCliente)
-                    .addComponent(btListarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btCadastrarPais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btListarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btListarPaises, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(162, 162, 162))
         );
         layout.setVerticalGroup(
@@ -103,56 +83,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarClienteActionPerformed
-        new TelaCadastroCliente(clientes, paises).setVisible(true);
+        new TelaCadastroCliente().setVisible(true);
     }//GEN-LAST:event_btCadastrarClienteActionPerformed
 
     private void btCadastrarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarPaisActionPerformed
-        new TelaCadastroPais(paises).setVisible(true);
+        new TelaCadastroPais().setVisible(true);
     }//GEN-LAST:event_btCadastrarPaisActionPerformed
 
     private void btListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarClientesActionPerformed
-        new TelaListarCliente(clientes).setVisible(true);
+        new TelaListarCliente().setVisible(true);
     }//GEN-LAST:event_btListarClientesActionPerformed
 
     private void btListarPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarPaisesActionPerformed
-        new TelaListarPais(paises).setVisible(true);
+        new TelaListarPais().setVisible(true);
     }//GEN-LAST:event_btListarPaisesActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
-    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrarCliente;

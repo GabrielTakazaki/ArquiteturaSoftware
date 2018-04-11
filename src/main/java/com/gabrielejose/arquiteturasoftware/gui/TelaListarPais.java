@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package com.gabrielejose.arquiteturasoftware.gui;
 
-import bancodedados.PaisController;
-import bancodedados.DAO.PaisDAO;
-import entidades.Pais;
+import com.gabrielejose.arquiteturasoftware.bancodedados.DAO.PaisDAO;
+import com.gabrielejose.arquiteturasoftware.entidades.Pais;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -17,27 +17,29 @@ import javax.swing.table.DefaultTableModel;
 public class TelaListarPais extends javax.swing.JFrame {
 
    private Pais p;
-   private PaisController paises;
    private PaisDAO paisDAO;
     /**
      * Creates new form TelaListarPais
      */
-    public TelaListarPais(PaisController paises) {
-        this.paises = paises;
+    public TelaListarPais() {
         initComponents();
         CarregaTbPais();
         setLocationRelativeTo(null);
     }
     public void CarregaTbPais () {
-        paisDAO = new PaisDAO(paises);
+        paisDAO = new PaisDAO();
         DefaultTableModel table = (DefaultTableModel) tbPais.getModel();
-        if (paisDAO.listarPaises()!= null){
-            List<Pais> listaPaises = paisDAO.listarPaises();
-            for (Pais p : listaPaises) {
-                table.addRow(new String[]{
-                    p.getNome(),p.getSigla()
-                    });
+        try {
+            if (paisDAO.listarPaises() != null){
+                List<Pais> listaPaises = paisDAO.listarPaises();
+                for (Pais p : listaPaises) {
+                    table.addRow(new String[]{
+                        p.getNome(),p.getSigla()
+                        });
+                }
             }
+        } catch (Exception ex){
+                JOptionPane.showMessageDialog(null, "ERRO "+ ex.getMessage());
         }
     }
     
@@ -55,6 +57,7 @@ public class TelaListarPais extends javax.swing.JFrame {
         btSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listar Pais");
 
         tbPais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
